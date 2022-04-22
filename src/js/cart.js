@@ -3,13 +3,10 @@ function getLocalStorage(key) {
 }
 
 function getCartContents() {
-<<<<<<< HEAD
   let markup = "";
-=======
->>>>>>> 821b3afa862d4283bc4661042d17c540da15a21a
-  const cartItems = getLocalStorage("so-cart");
+  const cartItems = getLocalStorage('so-cart');
   const htmlItems = cartItems.map((item) => renderCartItem(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  document.querySelector('.product-list').innerHTML = htmlItems.join('');
   // document.querySelector(".product-list").innerHTML = renderCartItem(cartItems);
 }
 
