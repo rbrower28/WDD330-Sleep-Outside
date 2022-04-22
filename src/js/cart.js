@@ -3,7 +3,10 @@ function getLocalStorage(key) {
 }
 
 function getCartContents() {
+<<<<<<< HEAD
   let markup = "";
+=======
+>>>>>>> 821b3afa862d4283bc4661042d17c540da15a21a
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => renderCartItem(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
@@ -25,7 +28,6 @@ function renderCartItem(item) {
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>`;
-  console.log(newItem);
   return newItem;
 }
 
