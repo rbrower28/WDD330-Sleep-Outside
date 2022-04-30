@@ -12,8 +12,7 @@ export default class ProductList {
   }
 
   generateList(list) {
-    const template = document.getElementById("product-card-template");
-    console.log(list);
+    const template = document.getElementById('product-card-template');
     list.forEach(product => {
       const clone = template.content.cloneNode(true);
       const preparedClone = this.prepareTemplate(clone, product)
