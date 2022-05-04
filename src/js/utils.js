@@ -1,3 +1,5 @@
+'use strict';
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -22,9 +24,18 @@ export function setLocalStorage(key, data) {
 }
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
-  qs(selector).addEventListener("touchend", (event) => {
+  qs(selector).addEventListener('touchend', (event) => {
     event.preventDefault();
     callback();
   });
-  qs(selector).addEventListener("click", callback);
+  qs(selector).addEventListener('click', callback);
+}
+
+// render data to a template
+export function renderListWithTemplate(template, parentElement, list, callback) {
+  list.forEach(item => {
+    const clone = template.content.cloneNode(true);
+    const doneTemplate = callback(clone, item);
+    parentElement.appendChild(doneTemplate);
+  })
 }
