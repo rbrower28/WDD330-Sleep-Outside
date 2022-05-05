@@ -2,8 +2,12 @@
 
 import ProductData from './productData.js';
 import ProductList from './productList.js';
+import { loadHeaderFooter } from './utils.js';
 
-const TentsData = new ProductData('tents');
+loadHeaderFooter();
 
-const ProdList = new ProductList('tents', TentsData, document.querySelector('.product-list'));
-ProdList.init()
+const tentsData   = new ProductData('tents');
+const listElement = document.querySelector('.product-list');
+const prodList = new ProductList('tents', tentsData, listElement);
+  
+prodList.init();
