@@ -1,5 +1,13 @@
 'use strict';
 
+function convertToText(res) {
+  if (res.ok) {
+    return res.text();
+  } else {
+    throw new Error('Bad Response');
+  }
+}
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -12,7 +20,6 @@ export function getParam(param) {
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
 }
-
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
@@ -38,4 +45,32 @@ export function renderListWithTemplate(template, parentElement, list, callback) 
     const doneTemplate = callback(clone, item);
     parentElement.appendChild(doneTemplate);
   })
+}
+
+// render data with a template
+export function renderWithTemplate(template, parentElement, data, callback) {
+  let clone = template.content.cloneNode(true);
+  if (callback) { 
+    clone = callback(clone, data);
+  }
+  parentElement.appendChild(clone);
+}
+
+// loads a custom template at the given path
+export async function loadTemplate(path) {
+  const html = await fetch(path).then(convertToText);
+  const template = document.createElement('template');
+  template.innerHTML = html;
+  return template;
+}
+
+// loads the header and the footer
+export async function loadHeaderFooter() {
+  const header = await loadTemplate('../partials/header.html');
+  const headerElem = document.getElementById('main-header');
+  renderWithTemplate(header, headerElem);
+
+  const footer = await loadTemplate('../partials/footer.html');
+  const footerElem = document.getElementById('main-footer');
+  renderWithTemplate(footer, footerElem);
 }
