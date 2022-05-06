@@ -1,0 +1,1 @@
+"use strict";import o from"./productData.js";import r from"./productList.js";import{loadHeaderFooter as s}from"./utils.js";import{getParam as e}from"./utils.js";s();const t=e("category");console.log(t);const c=new o,i=document.querySelector(".product-list"),a=new r(t,c,i);a.init();

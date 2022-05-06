@@ -1,0 +1,1 @@
+"use strict";import t from"./productData.js";import o from"./productList.js";import{loadHeaderFooter as r}from"./utils.js";r();const s=new t("tents"),e=document.querySelector(".product-list"),i=new o("tents",s,e);i.init();
