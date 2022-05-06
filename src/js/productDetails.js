@@ -9,7 +9,8 @@ export default class ProductDetails {
   }
 
   async init() {
-    this.product = await this.dataSource.findProductById(this.productId);
+    this.product = await this.dataSource.findProductByID(this.productId);
+    console.log(this.product);
     document.querySelector('main').innerHTML = this.renderProductDetails();
     // add listener to Add to Cart button
     document.getElementById('addToCart')
@@ -30,7 +31,7 @@ export default class ProductDetails {
     <h2 class="divider">${this.product.NameWithoutBrand}</h2>
     <img
       class="divider"
-      src="${this.product.Image}"
+      src="${this.product.Images.PrimaryLarge}"
       alt="${this.product.NameWithoutBrand}"
     />
     <p class="product-card__price">$${this.product.FinalPrice}</p>

@@ -9,13 +9,13 @@ export default class ProductList {
   }
 
   async init() {
-    const data = await this.dataSrc.getData();
-    this.renderList(data)
+    const list = await this.dataSrc.getData(this.category);
+    this.renderList(list)
   }
 
   doTemplate(template, product) {
     template.querySelector('a').href += product.Id;
-    template.querySelector('img').src = product.Image;
+    template.querySelector('img').src = product.Images.PrimaryMedium;
     template.querySelector('img').alt += product.Name;
     template.querySelector('.card__brand').innerHTML = product.Brand.Name;
     template.querySelector('.card__name').innerHTML = product.NameWithoutBrand;
