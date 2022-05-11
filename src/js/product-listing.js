@@ -8,7 +8,6 @@ import { getParam } from './utils.js'
 loadHeaderFooter();
 
 const category = getParam('category');
-console.log(category);
 
 const prodData = new ProductData();
 const listElement = document.querySelector('.product-list');
