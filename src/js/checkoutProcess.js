@@ -10,7 +10,8 @@ export default class CheckoutProcess {
     // shipping for extra items beyond first is $2 each
     this.extraItemShipping = extraItemShipping;
 
-    this.numberOfItems = getNumberOfItems(getLocalStorage("so-cart"));
+    this.numberOfItems = getLocalStorage("so-cart").length;
+    console.log(this.numberOfItems);
 
     this.itemSubtotal = calculateTotal(getLocalStorage("so-cart"));
     this.shippingEstimate = 0;
@@ -19,18 +20,13 @@ export default class CheckoutProcess {
   }
 
 
-  getNumberOfItems(array) {
-
-
-  }
-
-  testArray = [1, 2, 3]
-
-  getNumberOfItems(testArray);
-
   calculateShipping() {}
 
   calculateOrderTotals() {}
 
   displayOrderTotals() {}
 }
+
+let checkoutProcess = new CheckoutProcess;
+
+checkoutProcess.init();

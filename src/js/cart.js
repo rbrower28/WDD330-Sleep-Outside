@@ -2,7 +2,7 @@ import { loadHeaderFooter } from './utils.js';
 
 loadHeaderFooter();
 
-function getLocalStorage(key) {
+export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
@@ -39,7 +39,7 @@ function renderCartItem(item) {
   return newItem;
 }
 
-function calculateTotal(cartItems) {
+export function calculateTotal(cartItems) {
   var total = 0;
   cartItems.forEach((item) => {
     total += item.FinalPrice;
