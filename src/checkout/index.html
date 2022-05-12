@@ -12,7 +12,7 @@
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
-        <form>
+        <form name="checkout">
           <fieldset>
             <legend>Shipping</legend>
             <br />
@@ -57,15 +57,30 @@
               <input type="text" required aria-required="true" /><br />
             </label>
           </fieldset>
-          <fieldset>
+          <fieldset class="checkout-summary">
             <legend>Order Summary</legend>
-            <br />
-            <p>Item Subtotal<br /></p>
-            <p>Shipping Estimate<br /></p>
-            <p>Tax<br /></p>
-            <p><b>Order Total</b></p>
+            <ul>
+              <li>
+                <label for="cartTotal"
+                  >Item Subtotal(<span id="num-items"></span>)
+                </label>
+                <p name="cartTotal" id="cartTotal"></p>
+              </li>
+              <li>
+                <label for="shipping">Shipping Estimate</label>
+                <p id="shipping"></p>
+              </li>
+              <li>
+                <label for="tax">Tax</label>
+                <p id="tax"></p>
+              </li>
+              <li>
+                <label for="orderTotal"><b>Order Total</b></label>
+                <p id="orderTotal"></p>
+              </li>
+            </ul>
           </fieldset>
-          <button type="submit">Checkout</button>
+          <button type="submit" id="checkoutSubmit">Checkout</button>
         </form>
       </section>
     </main>

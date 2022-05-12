@@ -1,39 +1,25 @@
-import { loadHeaderFooter } from './utils.js';
-import { calculateTotal, getLocalStorage } from "./cart.js";
+import { loadHeaderFooter } from "./utils.js";
+import CheckoutProcess from "./CheckoutProcess.js";
 
 loadHeaderFooter();
 
+const myCheckout = new CheckoutProcess("so-cart", ".checkout-summary");
+myCheckout.init();
 
+document
+  .querySelector("#zip")
+  .addEventListener("blur", myCheckout.calculateOrdertotal.bind(myCheckout));
+// listening for click on the button
+document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
+  e.preventDefault();
 
-export default class Checkout {
-  constructor(tax, firstItemShipping, extraItemShipping) {
-    // in case we want different tax, shipping, and extra item shipping rates
-    this.tax = tax;
-    // shipping for first item is $10 in directions
-    this.firstItemShipping = firstItemShipping;
-    // shipping for extra items beyond first is $2 each
-    this.extraItemShipping = extraItemShipping;
+  myCheckout.checkout();
+});
 
-    this.numberOfItems = getLocalStorage("so-cart").length;
-    console.log(this.numberOfItems);
-
-    this.itemSubtotal = calculateTotal(getLocalStorage("so-cart"));
-    this.shippingEstimate = 0;
-    this.tax = 0;
-    this.orderTotal = 0;
-  }
-
-
-  calculateShipping() {}
-
-  calculateOrderTotals() {}
-
-  displayOrderTotals() {}
-}
-{
-
-
-    let checkout= new Checkout(.6,10,2);
-    
-    checkout.init();
-}
+// this is how it would look if we listen for the submit on the form
+// document.forms['checkout']
+// .addEventListener('submit', (e) => {
+//   e.preventDefault();
+//   // e.target would contain our form in this case
+//    myCheckout.checkout();
+// });

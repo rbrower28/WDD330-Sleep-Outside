@@ -1,3 +1,6 @@
+// I copied and pasted the code below from the instructor's solution... 
+// So this is basically a module for using the API for getting product data
+
 const baseURL = 'http://157.201.228.93:2992/';
 // const baseURL = 'http://127.0.0.1:3000/';
 async function convertToJson(res) {
