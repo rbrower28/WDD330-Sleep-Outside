@@ -73,13 +73,6 @@ export default class CheckoutProcess {
     qs('#summaryShipEst').textContent = '$' + this.shipping.toFixed(2);
     qs('#summaryTax').textContent = '$' + this.tax.toFixed(2);
     qs('#summaryTotal').textContent = '$' + this.orderTotal;
-
-    // debug
-    // qs('#summaryQuant').textContent = 'test';
-    // qs('#summarySubtotal').textContent = 'test';
-    // qs('#summaryShipEst').textContent = 'test';
-    // qs('#summaryTax').textContent = 'test';
-    // qs('#summaryTotal').textContent = 'test';
   }
 
   async checkout() {
