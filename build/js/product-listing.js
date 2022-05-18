@@ -1,1 +1,16 @@
-"use strict";import o from"./productData.js";import r from"./productList.js";import{loadHeaderFooter as s}from"./utils.js";import{getParam as e}from"./utils.js";s();const t=e("category");console.log(t);const c=new o,i=document.querySelector(".product-list"),a=new r(t,c,i);a.init();
+'use strict';
+
+import ExternalServices from './externalServices.js';
+import ProductList from './productList.js';
+import { loadHeaderFooter } from './utils.js';
+import { getParam } from './utils.js'
+
+loadHeaderFooter();
+
+const category = getParam('category');
+
+const prodData = new ExternalServices();
+const listElement = document.querySelector('.product-list');
+const prodList = new ProductList(category, prodData, listElement);
+  
+prodList.init();

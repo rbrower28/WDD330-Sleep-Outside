@@ -1,4 +1,33 @@
-var s=(a,t,d)=>new Promise((e,c)=>{var u=r=>{try{o(d.next(r))}catch(i){c(i)}},p=r=>{try{o(d.throw(r))}catch(i){c(i)}},o=r=>r.done?e(r.value):Promise.resolve(r.value).then(u,p);o((d=d.apply(a,t)).next())});import{setLocalStorage as l,getLocalStorage as n,loadHeaderFooter as h}from"./utils.js";h();export default class m{constructor(t,d){this.productId=t,this.product={},this.dataSource=d}init(){return s(this,null,function*(){this.product=yield this.dataSource.findProductByID(this.productId),console.log(this.product),document.querySelector("main").innerHTML=this.renderProductDetails(),document.getElementById("addToCart").addEventListener("click",this.addToCart.bind(this))})}addToCart(){let t=n("so-cart");t||(t=[]),t.push(this.product),l("so-cart",t)}renderProductDetails(){return`<section class="product-detail"> <h3>${this.product.Brand.Name}</h3>
+import { setLocalStorage, getLocalStorage, loadHeaderFooter } from './utils.js';
+
+loadHeaderFooter();
+export default class ProductDetails {
+  constructor(productId, dataSource){
+    this.productId = productId;
+    this.product = {};
+    this.dataSource = dataSource;
+  }
+
+  async init() {
+    this.product = await this.dataSource.findProductByID(this.productId);
+    console.log(this.product);
+    document.querySelector('main').innerHTML = this.renderProductDetails();
+    // add listener to Add to Cart button
+    document.getElementById('addToCart')
+            .addEventListener('click', this.addToCart.bind(this));
+  }
+
+  addToCart() {
+    let cartContents = getLocalStorage('so-cart');
+    if(!cartContents){
+      cartContents = [];
+    }
+    cartContents.push(this.product);
+    setLocalStorage('so-cart', cartContents);
+  }
+
+  renderProductDetails() {
+    return `<section class="product-detail"> <h3>${this.product.Brand.Name}</h3>
     <h2 class="divider">${this.product.NameWithoutBrand}</h2>
     <img
       class="divider"
@@ -12,4 +41,6 @@ var s=(a,t,d)=>new Promise((e,c)=>{var u=r=>{try{o(d.next(r))}catch(i){c(i)}},p=
     </p>
     <div class="product-detail__add">
       <button id="addToCart" data-id="${this.product.Id}">Add to Cart</button>
-    </div></section>`}}
+    </div></section>`;
+  }
+}

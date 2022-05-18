@@ -274,3 +274,17 @@ footer {
 .grid-right {
   text-align: end;
 }
+
+.alert {
+  border: 3px solid darkred;
+  background-color: rgba(255, 0, 51, 0.312);
+  margin: 1rem auto;
+  padding: 1rem;
+  max-width: 400px;
+  text-align: center;
+}
+
+.x {
+  text-align: end;
+  margin-bottom: 0;
+}

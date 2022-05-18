@@ -1,1 +1,40 @@
-var o=(i,e,r)=>new Promise((n,s)=>{var d=t=>{try{a(r.next(t))}catch(c){s(c)}},m=t=>{try{a(r.throw(t))}catch(c){s(c)}},a=t=>t.done?n(t.value):Promise.resolve(t.value).then(d,m);a((r=r.apply(i,e)).next())});import{renderListWithTemplate as h}from"./utils.js";export default class u{constructor(e,r,n){this.category=e,this.element=n,this.dataSrc=r}init(){return o(this,null,function*(){const e=yield this.dataSrc.getData(this.category);this.renderList(e)})}doTemplate(e,r){return e.querySelector("a").href+=r.Id,e.querySelector("img").src=r.Images.PrimaryMedium,e.querySelector("img").alt+=r.Name,e.querySelector(".card__brand").innerHTML=r.Brand.Name,e.querySelector(".card__name").innerHTML=r.NameWithoutBrand,e.querySelector(".product-card__price").innerHTML+=r.FinalPrice,e}renderList(e){this.element.innerHTML="",l(e,4);const r=document.getElementById("product-card-template");h(r,this.element,e,this.doTemplate)}}function l(i,e){return i.length>e&&(i.length=e),i}
+import { renderListWithTemplate } from './utils.js';
+
+export default class ProductList {
+  
+  constructor(category, dataSrc, element) {
+    this.category = category;
+    this.element = element;
+    this.dataSrc = dataSrc;
+  }
+
+  async init() {
+    const list = await this.dataSrc.getData(this.category);
+    this.renderList(list)
+  }
+
+  doTemplate(template, product) {
+    template.querySelector('a').href += product.Id;
+    template.querySelector('img').src = product.Images.PrimaryMedium;
+    template.querySelector('img').alt += product.Name;
+    template.querySelector('.card__brand').innerHTML = product.Brand.Name;
+    template.querySelector('.card__name').innerHTML = product.NameWithoutBrand;
+    template.querySelector('.product-card__price').innerHTML += product.FinalPrice;
+    return template
+  }
+
+  renderList(list) {
+    this.element.innerHTML = '';
+    shortenList(list, 4);
+
+    const template = document.getElementById('product-card-template');
+    renderListWithTemplate(template, this.element, list, this.doTemplate);
+  }
+}
+
+function shortenList(list, length) {
+  if (list.length > length) {
+    list.length = length;
+  }
+  return list
+}
