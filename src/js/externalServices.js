@@ -15,6 +15,14 @@ export default class ExternalServices {
   //   this.path = `../json/${this.category}.json`;
   // }
 
+
+  loginRequest(credentials) {
+    const request = {
+      method: "POST",
+      body: JSON.stringify(credentials)
+    }
+  }
+
   getData(category) {
     return fetch(baseURL + `products/search/${category}`)
     .then(convertToJson).then((data) => data.Result);

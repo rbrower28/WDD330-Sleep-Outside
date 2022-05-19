@@ -2,26 +2,39 @@ import { loadHeaderFooter } from "./utils.js";
 
 loadHeaderFooter();
 
+class Admin {
+  constructor() {}
 
-class Admin{
+  login() {
+    console.log("You logged in!");
+  }
 
-    constructor(){
+  getLoginFormElement() {
+    return document.querySelector("#login-form");
+  }
 
-    }
+  renderLoginForm() {
+    return `
+      <form>
+          <fieldset>
+              <legend>Please Log In</legend>
+              <label>Email:<input type="email" name="userEmail"></label><br><br>
+              <label>Password:<input type="password" name="userPassword"></label><br><br>
+              <button type="submit" id="login-button">Login</button>
+          </fieldset>
+      </form>
+      `;
+  }
 
-    login() {
-
-    }
-
-    getLoginFormElement(){
-        return document.querySelector('#login-form');
-    }
-
-    showLoginForm(){
-        loginForm = this.getLoginFormElement();
-
-    }
-
+  injectLoginForm() {
+    let loginForm = this.getLoginFormElement();
+    loginForm.innerHTML = this.renderLoginForm();
+  }
 }
 
-showLoginForm();
+{
+  let admin = new Admin();
+  admin.injectLoginForm();
+
+  document.querySelector("#login-button").addEventListener("click", console.log("You logged in!"));
+}
