@@ -80,6 +80,7 @@ export function alertMessage(message, scroll = true) {
   heading.textContent = message;
   const x = document.createElement('p');
   x.textContent = 'X';
+  x.classList.add('x')
   alert.appendChild(heading);
   alert.appendChild(x);
   // add a listener to the alert to see if they clicked on the X

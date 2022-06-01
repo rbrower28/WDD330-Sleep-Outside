@@ -1,1 +1,13 @@
-"use strict";import t from"./productData.js";import o from"./productList.js";import{loadHeaderFooter as r}from"./utils.js";r();const s=new t("tents"),e=document.querySelector(".product-list"),i=new o("tents",s,e);i.init();
+'use strict';
+
+import ExternalServices from './externalServices.js';
+import ProductList from './productList.js';
+import { loadHeaderFooter } from './utils.js';
+
+loadHeaderFooter();
+
+const tentsData = new ExternalServices('tents');
+const listElement = document.querySelector('.product-list');
+const prodList = new ProductList('tents', tentsData, listElement);
+  
+prodList.init();
